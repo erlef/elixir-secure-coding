@@ -4,13 +4,13 @@
 
 Found in this series of modules is a curriculum for teaching Secure Coding concepts and ideas centered around the Elixir ecosystem. Core principles of Application Security have been sourced from other available resources within the community and pieced together into this Elixir Livebook format to allow for an interactive spin.
 
-It is worth stating that this material is a work in progress and is open to contributions in order to make this the one-stop shop for Developer Secure Coding Training (for Elixir). The initial training material was originally crafted by the Product Security team at [Podium](https://www.podium.com/) and as such, contains very opinionated lessons to help contribute to the Secure SDLC of Podium's engineers. The more general this material can be made through outside contributors, the more secure we can make the Elixir community.
+It is worth stating that this material is a work in progress and is open to contributions in order to make this the one-stop shop for Developer Secure Coding Training (for Elixir). The initial training material was originally crafted by the Product Security team at [Podium](https://www.podium.com/), but is now maintained by the [Erlang Ecosystem Foundation](https://erlef.org).
 
 ## Who This Is For
 
 This curriculum is for any Software Developer / Engineer / Maker / Hacker looking to better their own knowledge of the Web Application Security space, especially as it pertains to Elixir Phoenix applications.
 
-This Training material is also ideally used in an educational environment for organizations to level up their Engineering teams Security knowledge. Quiz questions have been crafted within and an auto-grader that can be deployed in the CI/CD pipeline for local forks of this repo will be made available soon.
+This Training material is also ideally used in an educational environment for organizations to level up their Engineering teams Security knowledge. Quiz questions have been crafted within and are graded directly within each Livebook.
 
 ## How To Use This Livebook
 
