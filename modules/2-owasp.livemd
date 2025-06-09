@@ -101,25 +101,29 @@ Notable CWEs included are CWE-259: Use of Hard-coded Password, CWE-327: Broken o
 
 _Please uncomment the function call that you believe is correct._
 
-<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjT1dBU1A6MVxuZGVmbW9kdWxlIFBhc3N3b3JkQ29tcGFyZSBkb1xuICBkZWYgb3B0aW9uX29uZShwYXNzd29yZCwgbWQ1X2hhc2gpIGRvXG4gICAgY2FzZSA6Y3J5cHRvLmhhc2goOm1kNSwgcGFzc3dvcmQpID09IG1kNV9oYXNoIGRvXG4gICAgICB0cnVlIC0+IDplbnRyeV9ncmFudGVkX29wMVxuICAgICAgZmFsc2UgLT4gOmVudHJ5X2RlbmllZF9vcDFcbiAgICBlbmRcbiAgZW5kXG5cbiAgZGVmIG9wdGlvbl90d28ocGFzc3dvcmQsIGJjcnlwdF9zYWx0ZWRfaGFzaCkgZG9cbiAgICBjYXNlIEJjcnlwdC52ZXJpZnlfcGFzcyhwYXNzd29yZCwgYmNyeXB0X3NhbHRlZF9oYXNoKSBkb1xuICAgICAgdHJ1ZSAtPiA6ZW50cnlfZ3JhbnRlZF9vcDJcbiAgICAgIGZhbHNlIC0+IDplbnRyeV9kZW5pZWRfb3AyXG4gICAgZW5kXG4gIGVuZFxuZW5kXG5cbiMgRE8gTk9UIENIQU5HRSBDT0RFIEFCT1ZFIFRISVMgTElORSA9PT09PT09PT09PT09PT09PT09PT09PT09XG5cbiMgUGFzc3dvcmRDb21wYXJlLm9wdGlvbl9vbmUoXCJ1c2Vyc19wYXNzd29yZFwiLCBtZDVfaGFzaClcbiMgUGFzc3dvcmRDb21wYXJlLm9wdGlvbl90d28oXCJ1c2Vyc19wYXNzd29yZFwiLCBiY3J5cHRfc2FsdGVkX2hhc2gpIn0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjT1dBU1A6MVxuZGVmbW9kdWxlIFBhc3N3b3JkQ29tcGFyZSBkb1xuICBkZWYgb3B0aW9uX29uZShwYXNzd29yZCwgbWQ1X2hhc2gpIGRvXG4gICAgY2FzZSA6Y3J5cHRvLmhhc2goOm1kNSwgcGFzc3dvcmQpID09IG1kNV9oYXNoIGRvXG4gICAgICB0cnVlIC0+IDplbnRyeV9ncmFudGVkX29wMVxuICAgICAgZmFsc2UgLT4gOmVudHJ5X2RlbmllZF9vcDFcbiAgICBlbmRcbiAgZW5kXG5cbiAgZGVmIG9wdGlvbl90d28ocGFzc3dvcmQsIGJjcnlwdF9zYWx0ZWRfaGFzaCkgZG9cbiAgICBjYXNlIEJjcnlwdC52ZXJpZnlfcGFzcyhwYXNzd29yZCwgYmNyeXB0X3NhbHRlZF9oYXNoKSBkb1xuICAgICAgdHJ1ZSAtPiA6ZW50cnlfZ3JhbnRlZF9vcDJcbiAgICAgIGZhbHNlIC0+IDplbnRyeV9kZW5pZWRfb3AyXG4gICAgZW5kXG4gIGVuZFxuZW5kXG5cbiMgRE8gTk9UIENIQU5HRSBDT0RFIEFCT1ZFIFRISVMgTElORSA9PT09PT09PT09PT09PT09PT09PT09PT09XG5cbiMgUGFzc3dvcmRDb21wYXJlLm9wdGlvbl9vbmUoXCJ1c2Vyc19wYXNzd29yZFwiLCBtZDVfaGFzaClcblBhc3N3b3JkQ29tcGFyZS5vcHRpb25fdHdvKFwidXNlcnNfcGFzc3dvcmRcIiwgYmNyeXB0X3NhbHRlZF9oYXNoKSJ9","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 result =
-  defmodule PasswordCompare do
-    def option_one(password, md5_hash) do
-      case :crypto.hash(:md5, password) == md5_hash do
-        true -> :entry_granted_op1
-        false -> :entry_denied_op1
+  (
+    defmodule PasswordCompare do
+      def option_one(password, md5_hash) do
+        case :crypto.hash(:md5, password) == md5_hash do
+          true -> :entry_granted_op1
+          false -> :entry_denied_op1
+        end
+      end
+
+      def option_two(password, bcrypt_salted_hash) do
+        case Bcrypt.verify_pass(password, bcrypt_salted_hash) do
+          true -> :entry_granted_op2
+          false -> :entry_denied_op2
+        end
       end
     end
 
-    def option_two(password, bcrypt_salted_hash) do
-      case Bcrypt.verify_pass(password, bcrypt_salted_hash) do
-        true -> :entry_granted_op2
-        false -> :entry_denied_op2
-      end
-    end
-  end
+    PasswordCompare.option_two("users_password", bcrypt_salted_hash)
+  )
 
 case GradingClient.check_answer(OWASP, 1, result) do
   :correct ->

@@ -1,16 +1,16 @@
-# ESCT: Part 12 - Cryptography 
+# ESCT: Part 12 - Cryptography
 
 ## Introduction
 
-Cryptography is the process of transforming information or data from its original form into one that is unreadable by systems, tools, or people unless they have a key.  The part of the process that converts source data/information into the unreadable version is called encryption.   Reversing that process is called decryption. 
+Cryptography is the process of transforming information or data from its original form into one that is unreadable by systems, tools, or people unless they have a key.  The part of the process that converts source data/information into the unreadable version is called encryption.   Reversing that process is called decryption.
 
 Like many concepts/technologies in security, cryptography is not new.  Centuries of devisings ways to send messages between and among 
 known and trusted senders/receivers while making those messages unreadable for enemies or anyone else for whom the message is not intended.
-Secret codes, etc. 
+Secret codes, etc.
 
 Cryptography, like speaking or writing in code, is used whenever there something that needs to be kept secret in an environment where there are multiple other parties who could see or hear the secret but are not the intended recipient.  The sender and receiver agree upon a code to exchange messages.  Additionally,  written notes can be stored and unless a reader has the code, won't know what the actual message is.
 
-Cryptography is used throughout applications to protect sensitive information that while is needed for the operation of the application and its components, is not intended to be openly shared.  This module highlights how cryptography is applied  
+Cryptography is used throughout applications to protect sensitive information that while is needed for the operation of the application and its components, is not intended to be openly shared.  This module highlights how cryptography is applied
 
 ## Table of Contents
 
@@ -32,28 +32,29 @@ There are two categories of cryptography, symmetric and asymmetric and within th
 
 In symmetric encryption, which is also called secret key encryption, a single key used for both encryption and decryption.  Symmetric cryptography is bested used when performance and efficiency are important to the application component using/accessing the data to be secured.
 
-In asymmetric encryption, which is also called public-key cryptography, two related but separate keys are generated and then one is used for encrypting while the other for decrpyting.  The keys include one that is meant to be shared (pubic key) and one that must always be kept secret(private) but in this public key infrastructure (PKI) system, both keys work to secure client-server interactions, secure VPN connectsion, certificates, digital signatures, and help ensure the technology and data in the system is only accessible by authenticated, and authorized entities with keys. 
+In asymmetric encryption, which is also called public-key cryptography, two related but separate keys are generated and then one is used for encrypting while the other for decrpyting.  The keys include one that is meant to be shared (pubic key) and one that must always be kept secret(private) but in this public key infrastructure (PKI) system, both keys work to secure client-server interactions, secure VPN connectsion, certificates, digital signatures, and help ensure the technology and data in the system is only accessible by authenticated, and authorized entities with keys.
 
-When selecting an algorithm, best practice is to never build your own, and to always use established and proven algorithms, vetted and recommended by industry experts like NIST.  
+When selecting an algorithm, best practice is to never build your own, and to always use established and proven algorithms, vetted and recommended by industry experts like NIST.
 
 [symmetric cryptography](https://developer.mozilla.org/en-US/docs/Glossary/Symmetric-key_cryptography)
 [NIST](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-77r1.pdf)
-### <span style="color:blue;">Example</span> / <span style="color:red;">Quiz</span>
 
+### <span style="color:blue;">Example</span> / <span style="color:red;">Quiz</span>
 
 ## Implementation in Modern Applications
 
 ### Description
-Modern applications have many components that store, process, transmit a variety of information and data. Often that information/data consists of "secrets" or is otherwise sensitive.  This includes things like personal information on customers, user credentials, of anything else application developers would like to keep secret. 
 
-API keys, database credentials, tokens, admin passwords and other credentials to access privileged components and features, senstivitve data (PII, healthcare), private keys, signing certificates, are all examples of information that should not be available for every users and indeed, kept internal to the organization. 
+Modern applications have many components that store, process, transmit a variety of information and data. Often that information/data consists of "secrets" or is otherwise sensitive.  This includes things like personal information on customers, user credentials, of anything else application developers would like to keep secret.
 
-To secure this data, look to implement cryptography both at rest and in transit.   
+API keys, database credentials, tokens, admin passwords and other credentials to access privileged components and features, senstivitve data (PII, healthcare), private keys, signing certificates, are all examples of information that should not be available for every users and indeed, kept internal to the organization.
 
-In-transit, ensure all requests/responses are sent using the secure version of the HTTP protocol, HTTPS.  HTTP over TLS.  Additionally, For remote access into development environments, SSH, VPN - for access to sensitive development environment internal to an organization/remote accessover a network. 
+To secure this data, look to implement cryptography both at rest and in transit.
 
+In-transit, ensure all requests/responses are sent using the secure version of the HTTP protocol, HTTPS.  HTTP over TLS.  Additionally, For remote access into development environments, SSH, VPN - for access to sensitive development environment internal to an organization/remote accessover a network.
 
-### <span style="color:blue;">Example (Draft)</span> 
+### <span style="color:blue;">Example (Draft)</span>
+
 ```
 For elixir, ExCrypto module[ExCrypto](https://hexdocs.pm/ex_crypto/ExCrypto.html)
 
@@ -75,7 +76,7 @@ use HTTPS which implements encryption over a channel. Diffie-Hellman
 
 ### Description
 
-Hashing is sometimes implemented alongside encryption but has a different purpose.  Cryptography used for confidentiality; keeping information secret except for intended recipient/audience.  
+Hashing is sometimes implemented alongside encryption but has a different purpose.  Cryptography used for confidentiality; keeping information secret except for intended recipient/audience.
 
 Hashes are used to ensure the integrity of the data, meaning ensuring from its creation/generation to its final state, it remains unmodified and untampered with. Hash algorithms are one way functions that - compare starting hash from known good data, to end hash which will indicate changes.  Hashing passwords is a common application.  Comparing hashes to determine if correct password entered.
 Hash Algorithms - SHA1, SHA2, MD5 (obsolete) - follow recommendations from  NIST [Approved Hash Algorithms](https://csrc.nist.gov/Projects/Hash-Functions)
@@ -92,7 +93,7 @@ Most of the concerns around cytography amount to data being inadvertently being 
 
 Follow NIST Recommendations for configuring the most secure algorithms when building your applications and securing secrets and data.
 
-Beware of hardcoding keys, private keys, in source code where they can be discovered by malicious actors. Avoid building your own cryptographic mechanisms or using outdated protocols. 
+Beware of hardcoding keys, private keys, in source code where they can be discovered by malicious actors. Avoid building your own cryptographic mechanisms or using outdated protocols.
 
 [Recommended algorithms
 ](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-77r1.pdf)[
@@ -102,6 +103,7 @@ https://csrc.nist.gov/Projects/Hash-Functions
 [Elixir encryption, hashing, etc. Modules](https://elixir-lang.org/getting-started/erlang-libraries.html#the-crypto-module)
 [OWASP Top10](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/)
 [Use TLS](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)
+
 ### <span style="color:blue;">Example</span> / <span style="color:red;">Quiz</span>
 
 **(True or False) You should build your own encryption from scratch.**

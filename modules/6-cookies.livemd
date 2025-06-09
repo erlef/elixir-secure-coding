@@ -181,15 +181,36 @@ In the Phoenix Framework, you would use functionality found within the [Plug lib
 
 _Fill out the `put_resp_cookie/4` function arguments with the settings outlined in the previous section, no other code changes should be necessary._
 
-<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIENPT0tJRV9TRUNVUklUWToxIFxuXG5jb29raWVfbmFtZSA9IFwiQ0hBTkdFX01FXCJcblxuIyBVbmNvbW1lbnQgYW5kIGNoYW5nZSB0aGUgcHV0X3Jlc3BfY29va2llIGNhbGwgYmVsb3dcbiMgY29ubiA9XG4jICAgUGx1Zy5Db25uLnB1dF9yZXNwX2Nvb2tpZShcbiMgICAgIGNvbm4sXG4jICAgICBjb29raWVfbmFtZSxcbiMgICAgIDw8MDo6OCwgNDI6Ojg+PixcbiMgICAgIGRvbWFpbjogLi4uLFxuIyAgICAgcGF0aDogLi4uLFxuIyAgICAgc2VjdXJlOiAuLi4sXG4jICAgICBodHRwX29ubHk6IC4uLixcbiMgICAgIHNhbWVfc2l0ZTogLi4uXG4jICAgKVxuXG5jb29raWUgPSBcbiAgY29ublxuICB8PiBQbHVnLkNvbm4uZmV0Y2hfY29va2llcygpXG4gIHw+IFBsdWcuQ29ubi5nZXRfcmVzcF9jb29raWVzKClcbiAgfD4gTWFwLmZldGNoIShjb29raWVfbmFtZSlcblxue2Nvb2tpZSwgYmluYXJ5X3BhcnQoY29va2llX25hbWUsIDAsIDYpfSJ9","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIENPT0tJRV9TRUNVUklUWToxIFxuXG5jb29raWVfbmFtZSA9IFwiQ0hBTkdFX01FXCJcblxuVW5jb21tZW50IGFuZCBjaGFuZ2UgdGhlIHB1dF9yZXNwX2Nvb2tpZSBjYWxsIGJlbG93XG5jb25uID1cbiAgUGx1Zy5Db25uLnB1dF9yZXNwX2Nvb2tpZShcbiAgICBjb25uLFxuICAgIGNvb2tpZV9uYW1lLFxuICAgIDw8MDo6OCwgNDI6Ojg+PixcbiAgICBkb21haW46IFwiXCIsXG4gICAgcGF0aDogLi4uLFxuICAgIHNlY3VyZTogLi4uLFxuICAgIGh0dHBfb25seTogLi4uLFxuICAgIHNhbWVfc2l0ZTogLi4uXG4gIClcblxuXG5jb25uID1cbiAgUGx1Zy5Db25uLnB1dF9yZXNwX2Nvb2tpZShcbiAgICBjb25uLFxuICAgIGNvb2tpZV9uYW1lLFxuICAgIDw8MDo6OCwgNDI6Ojg+PixcbiAgICBkb21haW46IFwiXCIsXG4gICAgXG4gIClcblxuXG5jb29raWUgPSBcbiAgY29ubj8gIHw+IFBsdWcuQ29ubi5mZXRjaF9jb29raWVzKClcbiAgfD4gUGx1Zy5Db25uLmdldF9yZXNwX2Nvb2tpZXMoKVxuICB8PiBNYXAuZmV0Y2ghKGNvb2tpZV9uYW1lKVxuXG57Y29va2llLCBiaW5hcnlfcGFydChjb29raWVfbmFtZSwgMCwgNil9In0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 result =
   (
     cookie_name = "CHANGE_ME"
+    Uncomment and change(the(put_resp_cookie(call(below))))
+
+    conn =
+      Plug.Conn.put_resp_cookie(
+        conn,
+        cookie_name,
+        <<0::8, 42::8>>,
+        domain: "",
+        path: ...,
+        secure: ...,
+        http_only: ...,
+        same_site: ...
+      )
+
+    conn =
+      Plug.Conn.put_resp_cookie(
+        conn,
+        cookie_name,
+        <<0::8, 42::8>>,
+        domain: ""
+      )
 
     cookie =
-      conn
+      conn?
       |> Plug.Conn.fetch_cookies()
       |> Plug.Conn.get_resp_cookies()
       |> Map.fetch!(cookie_name)
