@@ -253,7 +253,7 @@ Notable CWE included is CWE-1104: Use of Unmaintained Third-Party Components
 
 **Which of the outdated components listed below is vulnerable?**
 
-_Please change the atom below to the name of the vulnerable package installed in this Livebook AND update the afflicted package._
+_Please select the name of the vulnerable package below AND update the affected package._
 
 _HINT: Check the changelogs for each dependency._
 
