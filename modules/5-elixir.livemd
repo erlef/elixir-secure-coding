@@ -50,7 +50,7 @@ Beware of functions in applications/libraries that create atoms from input value
 
 _You should get a `true` result when you successfully fix the function._
 
-<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWToxXG5tYWxpY2lvdXNfdXNlcl9pbnB1dCA9IFVVSUQudXVpZDQoKVxuXG50cnkgZG9cbiAgbWFsaWNpb3VzX3VzZXJfaW5wdXRcbiAgIyBPTkxZIENIQU5HRSBORVhUIExJTkVcbiAgfD4gU3RyaW5nLnRvX2F0b20oKVxucmVzY3VlXG4gIGUgLT4gZVxuZW5kIn0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWToxXG5tYWxpY2lvdXNfdXNlcl9pbnB1dCA9IFVVSUQudXVpZDQoKVxuXG50cnkgZG9cbiAgbWFsaWNpb3VzX3VzZXJfaW5wdXRcbiAgIyBPTkxZIENIQU5HRSBORVhUIExJTkVcbiAgfD4gU3RyaW5nLnRvX2V4aXN0aW5nX2F0b20oKVxucmVzY3VlXG4gIGUgLT4gZVxuZW5kIn0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 result =
@@ -58,7 +58,7 @@ result =
     malicious_user_input = UUID.uuid4()
 
     try do
-      malicious_user_input |> String.to_atom()
+      malicious_user_input |> String.to_existing_atom()
     rescue
       e -> e
     end
@@ -175,13 +175,13 @@ end
 password = "HASH_OF_THE_USERS_ACTUAL_PASSWORD"
 # DO NOT EDIT ANY CODE ABOVE THIS LINE =====================
 
-user_input = "HASH_OF_asdfasdf"
+user_input = "HASH_OF_asdfasdflkajsdflkajsdlfkjasdlfkjaldsfkjaldskjflakdsjflaksdjflakjdsflakjsdf"
 
 # DO NOT EDIT ANY CODE BELOW THIS LINE (you may uncomment IO.puts) =============
 Benchwarmer.benchmark(fn -> Susceptible.compare(user_input, password) end)
 Benchwarmer.benchmark(fn -> Constant.compare(user_input, password) end)
 
-# IO.puts(:comparison_ran)
+IO.puts(:comparison_ran)
 ```
 
 ## Boolean Coercion
@@ -213,7 +213,7 @@ The latter will raise a `BadBooleanError` when the function returns `:ok` or `{:
 
 _Uncomment the if statement that uses the correct boolean comparison._
 
-<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWToyXG5cbmRlZm1vZHVsZSBTZWN1cml0eUNoZWNrIGRvXG4gIGRlZiB2YWxpZGF0ZShpbnB1dCwgcGFzc3dvcmRfaGFzaCkgZG9cbiAgICBjYXNlIFBsdWcuQ3J5cHRvLnNlY3VyZV9jb21wYXJlKGlucHV0LCBwYXNzd29yZF9oYXNoKSBkb1xuICAgICAgdHJ1ZSAtPiA6b2tcbiAgICAgIGZhbHNlIC0+IDphY2Nlc3NfZGVuaWVkXG4gICAgZW5kXG4gIGVuZFxuXG4gIGRlZmV4Y2VwdGlvbiBtZXNzYWdlOiBcIlRoZXJlIHdhcyBhbiBpc3N1ZVwiXG5lbmRcblxucGFzc3dvcmQgPSBcInNvbWVfc2VjdXJlX3Bhc3N3b3JkX2hhc2hcIlxudXNlcl9pbnB1dCA9IFwic29tZV9zdHJpbmdfd2hpY2hfb2J2aW91c2x5X2lzbnRfdGhlX3NhbWVfYXNfdGhlX3Bhc3N3b3JkXCJcbjpva1xuIyBETyBOT1QgRURJVCBBTlkgQ09ERSBBQk9WRSBUSElTIExJTkUgPT09PT09PT09PT09PT09PT09PT09XG5cbnRyeSBkb1xuIyBpZiBTZWN1cml0eUNoZWNrLnZhbGlkYXRlKHVzZXJfaW5wdXQsIHBhc3N3b3JkKSBvciByYWlzZShTZWN1cml0eUNoZWNrKSBkbyA6eW91X2xldF9hX2JhZGRpZV9pbiBlbmRcbiMgaWYgU2VjdXJpdHlDaGVjay52YWxpZGF0ZSh1c2VyX2lucHV0LCBwYXNzd29yZCkgfHwgcmFpc2UoU2VjdXJpdHlDaGVjaykgZG8gOnlvdV9sZXRfYV9iYWRkaWVfaW4gZW5kXG5yZXNjdWVcbiAgZSAtPiBlXG5lbmQifQ","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWToyXG5cbmRlZm1vZHVsZSBTZWN1cml0eUNoZWNrIGRvXG4gIGRlZiB2YWxpZGF0ZShpbnB1dCwgcGFzc3dvcmRfaGFzaCkgZG9cbiAgICBjYXNlIFBsdWcuQ3J5cHRvLnNlY3VyZV9jb21wYXJlKGlucHV0LCBwYXNzd29yZF9oYXNoKSBkb1xuICAgICAgdHJ1ZSAtPiA6b2tcbiAgICAgIGZhbHNlIC0+IDphY2Nlc3NfZGVuaWVkXG4gICAgZW5kXG4gIGVuZFxuXG4gIGRlZmV4Y2VwdGlvbiBtZXNzYWdlOiBcIlRoZXJlIHdhcyBhbiBpc3N1ZVwiXG5lbmRcblxucGFzc3dvcmQgPSBcInNvbWVfc2VjdXJlX3Bhc3N3b3JkX2hhc2hcIlxudXNlcl9pbnB1dCA9IFwic29tZV9zdHJpbmdfd2hpY2hfb2J2aW91c2x5X2lzbnRfdGhlX3NhbWVfYXNfdGhlX3Bhc3N3b3JkXCJcbjpva1xuIyBETyBOT1QgRURJVCBBTlkgQ09ERSBBQk9WRSBUSElTIExJTkUgPT09PT09PT09PT09PT09PT09PT09XG5cbnRyeSBkb1xuaWYgU2VjdXJpdHlDaGVjay52YWxpZGF0ZSh1c2VyX2lucHV0LCBwYXNzd29yZCkgb3IgcmFpc2UoU2VjdXJpdHlDaGVjaykgZG8gOnlvdV9sZXRfYV9iYWRkaWVfaW4gZW5kXG4jIGlmIFNlY3VyaXR5Q2hlY2sudmFsaWRhdGUodXNlcl9pbnB1dCwgcGFzc3dvcmQpIHx8IHJhaXNlKFNlY3VyaXR5Q2hlY2spIGRvIDp5b3VfbGV0X2FfYmFkZGllX2luIGVuZFxucmVzY3VlXG4gIGUgLT4gZVxuZW5kIn0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 result =
@@ -234,6 +234,9 @@ result =
     :ok
 
     try do
+      if SecurityCheck.validate(user_input, password) or raise(SecurityCheck) do
+        :you_let_a_baddie_in
+      end
     rescue
       e -> e
     end
@@ -304,12 +307,12 @@ This prevents the table from being read by other processes, such as remote shell
 
 **We have decided that we do not want this ETS table to be read from other processes, so try making it private:**
 
-<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWTozXG5cbiMgT05MWSBFRElUIFRISVMgTElORVxuc2VjcmV0X3RhYmxlID0gOmV0cy5uZXcoOnNlY3JldF90YWJsZSwgWzpwdWJsaWNdKVxuOmV0cy5pbmZvKHNlY3JldF90YWJsZSlbOnByb3RlY3Rpb25dIn0","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":"eyJzb3VyY2UiOiIjIEVMSVhJUl9TRUNVUklUWTozXG5cbiMgT05MWSBFRElUIFRISVMgTElORVxuc2VjcmV0X3RhYmxlID0gOmV0cy5uZXcoOnNlY3JldF90YWJsZSwgWzpwcml2YXRlXSlcbjpldHMuaW5mbyhzZWNyZXRfdGFibGUpWzpwcm90ZWN0aW9uXSJ9","chunks":null,"kind":"Elixir.GradingClient.GradedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 result =
   (
-    secret_table = :ets.new(:secret_table, [:public])
+    secret_table = :ets.new(:secret_table, [:private])
     :ets.info(secret_table)[:protection]
   )
 
